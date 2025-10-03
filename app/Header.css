@@ -1,9 +1,44 @@
+/* Hamburger animated icon */
+.hamburger {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger-box {
+  position: relative;
+  width: 32px;
+  height: 22px;
+}
+
+.hamburger-line {
+  position: absolute;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: #fff !important; /* force white */
+  border-radius: 2px;
+  box-shadow: 0 0 6px rgba(255,255,255,0.6);
+  transition: transform 200ms ease, opacity 200ms ease, background-color 200ms ease, box-shadow 200ms ease;
+}
+
+.hamburger-line:nth-child(1) { top: 0; }
+.hamburger-line:nth-child(2) { top: 50%; transform: translateY(-50%); }
+.hamburger-line:nth-child(3) { bottom: 0; }
+
+.hamburger-active .hamburger-line:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.hamburger-active .hamburger-line:nth-child(2) { opacity: 0; }
+.hamburger-active .hamburger-line:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
 .nav-link {
   position: relative;
   color: white;
   text-decoration: none;
   transition: color 0.3s;
-padding:20px;
+  padding: 16px 12px; /* default for desktop-ish */
 }
 
 .nav-link::after {
@@ -23,5 +58,54 @@ padding:20px;
 
 .nav-link:hover::after {
   width: 100%;
+}
+
+/* Smaller, tighter links on small screens */
+@media (max-width: 767px) {
+  .nav-link {
+    padding: 10px 8px;
+    font-size: 1rem;
+  }
+}
+
+/* Mobile dropdown links: larger, easy to tap, with same underline hover */
+.mobile-nav-link {
+  position: relative;
+  display: block;
+  color: white !important;
+  text-decoration: none;
+  padding: 12px 14px; /* bigger touch area */
+  font-size: 1.05rem;
+  min-width: 30vw; /* at least 30vw as requested */
+  transition: background-color 200ms ease, transform 200ms ease, color 200ms ease;
+}
+
+.mobile-nav-link::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 6px;
+  height: 2px;
+  background-color: white;
+  width: 0;
+  transition: width 0.25s ease;
+}
+
+.mobile-nav-link:hover::after {
+  width: calc(100% - 28px);
+}
+
+/* Animated hover for small screens */
+@media (max-width: 767px) {
+  .mobile-nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(6px);
+  }
+
+  .mobile-nav-link:active {
+    transform: translateX(6px) scale(0.98);
+    background-color: rgba(255, 255, 255, 0.14);
+  }
 }
 
