@@ -1,0 +1,27 @@
+.nav-link {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+padding:20px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 1px;
+  width: 0;
+  height: 2px;
+  background-color: white; /* amber-700 */
+  transition: width 0.3s;
+}
+
+.nav-link:hover {
+  color:white ;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
