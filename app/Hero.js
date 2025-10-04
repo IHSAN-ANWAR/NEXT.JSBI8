@@ -1,8 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 const Hero = () => {
+  const router = useRouter();
   return (
     <section className="hero-bg m-auto h-screen flex items-center relative overflow-hidden bg-gray-900">
       <div className="container relative z-10 mx-auto px-6 text-center lg:text-left">
@@ -47,6 +49,9 @@ const Hero = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="text-white border border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-black transition"
+            onClick={() => {
+              window.dispatchEvent(new CustomEvent('open-order-modal'));
+            }}
           >
             Order
           </motion.button>
@@ -55,6 +60,7 @@ const Hero = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="text-white border border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-black transition"
+            onClick={() => router.push("/menu")}
           >
             View Menu
           </motion.button>

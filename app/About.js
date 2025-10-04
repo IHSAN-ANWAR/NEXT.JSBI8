@@ -1,12 +1,11 @@
 "use client";
-import { motion } from "framer-motion";
-import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import React, { useState } from "react";
 
 const About = () => {
+  const [expanded, setExpanded] = useState(false);
   return (
     <section className="relative h-screen w-full flex items-center overflow-hidden">
-      {/* Dark gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-[#182848] to-black" />
 
       {/* Glow blobs for depth */}
       <div className="absolute -top-32 -left-32 w-[400px] h-[400px] bg-purple-500/20 rounded-full blur-3xl animate-pulse" />
@@ -50,9 +49,45 @@ const About = () => {
             got something for everyone. With fast delivery and mouthwatering
             dishes, your happiness is just one order away.
           </p>
-          <button className="bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-transparent hover:text-white hover:border hover:border-white transition cursor-pointer">
-            Learn More
-          </button>
+          <AnimatePresence initial={false}>
+            {expanded && (
+              <motion.div
+                key="about-more"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.4 }}
+                className="overflow-hidden"
+              >
+                <div className="mt-4 space-y-4 text-gray-300">
+                  <p>
+                    Since day one, our mission has been simple: craft memorable meals with
+                    honest ingredients and warm hospitality. We partner with local suppliers
+                    to bring you fresh produce and sustainable proteins.
+                  </p>
+                  <p>
+                    Our kitchen blends classic techniques with modern flavors. Whether it’s a
+                    quick lunch or a family dinner, we’ve designed our menu to have something
+                    for every taste and occasion.
+                  </p>
+                  <p>
+                    Have feedback or an idea for a new dish? We’d love to hear it. Your voice helps
+                    us continuously improve and innovate.
+                  </p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <div className="pt-2">
+            <button
+              onClick={() => setExpanded((v) => !v)}
+              className="bg-white text-black px-6 py-3 rounded-lg font-semibold hover:bg-transparent hover:text-white hover:border hover:border-white transition cursor-pointer"
+              aria-expanded={expanded}
+            >
+              {expanded ? "Show Less" : "Learn More"}
+            </button>
+          </div>
         </motion.div>
       </div>
     </section>

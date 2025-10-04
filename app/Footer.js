@@ -2,52 +2,49 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className=" text-center text-surface/75  dark:text-white/75 lg:text-left">
-
-     
-
+    <footer className="text-white/80 bg-gradient-to-r from-[#0b1020]/90 via-[#0b1020]/80 to-[#0b1020]/70 border-t border-white/10">
       {/* Footer Content */}
-      <div className="mx-6 py-10 text-center md:text-left">
+      <div className="max-w-7xl mx-auto px-6 lg:px-20 py-10 text-center md:text-left">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           
           {/* About */}
           <div>
-            <h6 className="mb-4 font-semibold uppercase">Our Restaurant</h6>
-            <p>
-              Experience fine dining with delicious flavors, cozy ambiance, and excellent service. 
+            <h6 className="mb-4 font-semibold uppercase text-white">Our Restaurant</h6>
+            <p className="text-white/70">
+              Experience fine dining with delicious flavors, cozy ambiance, and excellent service.
               We serve food made with love and fresh ingredients.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h6 className="mb-4 font-semibold uppercase">Quick Links</h6>
-            <p className="mb-2"><Link href="/menu">Menu</Link></p>
-            <p className="mb-2"><Link href="/about">About Us</Link></p>
-            <p className="mb-2"><Link href="/reservations">Reservations</Link></p>
-            <p><Link href="/contact">Contact</Link></p>
+            <h6 className="mb-4 font-semibold uppercase text-white">Quick Links</h6>
+            <p className="mb-2"><Link className="hover:underline" href="/menu">Menu</Link></p>
+            <p className="mb-2"><Link className="hover:underline" href="/about">About Us</Link></p>
+            <p className="mb-2"><Link className="hover:underline" href="/book">Book Table</Link></p>
+            <p><Link className="hover:underline" href="/contact">Contact</Link></p>
           </div>
 
           {/* Opening Hours */}
           <div>
-            <h6 className="mb-4 font-semibold uppercase">Opening Hours</h6>
-            <p className="mb-2">Mon - Fri: 11:00 AM - 10:00 PM</p>
-            <p className="mb-2">Sat - Sun: 9:00 AM - 11:00 PM</p>
-            <p className="mb-2">Happy Hour: 5:00 PM - 7:00 PM</p>
+            <h6 className="mb-4 font-semibold uppercase text-white">Opening Hours</h6>
+            <p className="mb-2 text-white/70">Mon - Fri: 11:00 AM - 10:00 PM</p>
+            <p className="mb-2 text-white/70">Sat - Sun: 9:00 AM - 11:00 PM</p>
+            <p className="mb-2 text-white/70">Happy Hour: 5:00 PM - 7:00 PM</p>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h6 className="mb-4 font-semibold uppercase">Contact</h6>
-            <p className="mb-2">📍 Islamabad</p>
-            <p className="mb-2">📨 ihsan.anwar4321@gmail.com</p>
-            <p>📞 +92 3276508773</p>
+            <h6 className="mb-4 font-semibold uppercase text-white">Contact</h6>
+            <p className="mb-2 text-white/70">📍 Islamabad</p>
+            <p className="mb-2 text-white/70">📨 ihsan.anwar4321@gmail.com</p>
+            <p className="text-white/70">📞 +92 3276508773</p>
           </div>
         </div>
       </div>
 
       {/* Bottom copyright */}
-      <div className="bg-black/5 p-6 text-center">
+      <div className="border-t border-white/10 p-6 text-center text-white/60">
         <span>© {new Date().getFullYear()} MyRestaurant. All rights reserved.</span>
       </div>
     </footer>

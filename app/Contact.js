@@ -4,7 +4,7 @@ import React from "react";
 
 export default function ReserveTable() {
   return (
-    <section className="bg-gradient-to-r from-[#182848] to-[#4b6cb7] min-h-screen flex items-center text-white">
+    <section className="min-h-screen flex items-center text-white">
       <div className="container mx-auto px-6 lg:px-20 grid md:grid-cols-2 gap-12 items-center">
         
         {/* Left Side - Heading & Text */}

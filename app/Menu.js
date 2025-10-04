@@ -1,59 +1,12 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { menuItems } from "./menuData";
 
 const Menu = () => {
-  const menuItems = [
-    {
-      id: 1,
-      name: "Classic Beef Burger",
-      price: "$8.99",
-      desc: "Juicy beef patty with melted cheese, lettuce, tomato, and our special house sauce.",
-      img: "/burger2.jpg",
-    },
-    {
-      id: 2,
-      name: "Fries",
-      price: "$3.49",
-      desc: "Crispy golden fries served hot and lightly salted.",
-      img: "/fries.jpg",
-    },
-    {
-      id: 3,
-      name: "Grilled Chicken Plate",
-      price: "$12.99",
-      desc: "Tender grilled chicken served with fresh salad and a side of fries.",
-      img: "/menu1.jpg",
-    },
-    {
-      id: 4,
-      name: "Banana Shake",
-      price: "$4.99",
-      desc: "Refreshing banana shake blended with creamy milk and ice.",
-      img: "/banana.jpg",
-    },
-    {
-      id: 5,
-      name: "Coffee",
-      price: "$2.99",
-      desc: "Freshly brewed hot coffee with a rich aroma and bold flavor.",
-      img: "/coffee.jpg",
-    },
-    {
-      id: 6,
-      name: "Mango Shake",
-      price: "$5.49",
-      desc: "Delicious mango shake made with ripe mangoes and chilled milk.",
-      img: "/mango.jpg",
-    },
-  ];
-
   return (
     <section className="relative min-h-screen py-16 px-6 lg:px-20" id="menu">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-[#182848] to-black" />
-      <div className="absolute -top-32 left-10 w-[400px] h-[400px] bg-rose-500/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-3xl animate-pulse" />
+      {/* Background uses global gradient from globals.css */}
 
       {/* Heading */}
       <motion.h2
@@ -68,15 +21,17 @@ const Menu = () => {
 
       {/* Menu Grid */}
       <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {menuItems.map((item) => (
-          <motion.div
-            key={item.id}
-            initial={{ opacity: 0, y: 60 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            className="rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-3 overflow-hidden flex flex-col"
-          >
+        {menuItems.map((item, idx) => {
+          const fromRight = idx < 3; // first row
+          return (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, x: fromRight ? 60 : -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.05 * (idx % 3) }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="rounded-2xl shadow-lg hover:shadow-2xl transition transform hover:-translate-y-3 overflow-hidden flex flex-col"
+            >
             {/* Image */}
             <div className="relative w-full h-72">
               <Image
@@ -97,12 +52,18 @@ const Menu = () => {
               </p>
 
               {/* Button */}
-              <button className="w-full border border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-black transition">
+              <button
+                className="w-full border border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-black transition"
+                onClick={() => {
+                  window.dispatchEvent(new CustomEvent('open-order-modal', { detail: { itemId: item.id } }));
+                }}
+              >
                 Order
               </button>
             </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );
